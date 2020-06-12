@@ -22,7 +22,15 @@ extern "C" void kernelMain(const void* multiboot_structure, uint32_t /*multiboot
 
     clear();
 
-    printf("not erased!")    ;
+    printf("Welcome to the Uranium Kernel!\n");
+    printf("\n");
+    printf("pid check! \n");
+    int pid = getpid();
+    char cpid = '0' + pid;
+    char* dpid = &cpid;
+    printf(dpid);
+
+    //please dont write shit beneath here, i wasted an hour of my life because of this shit
     GlobalDescriptorTable gdt;
     InterruptManager interrupts(0x20, &gdt);
     KeyboardDriver keyboard(&interrupts);

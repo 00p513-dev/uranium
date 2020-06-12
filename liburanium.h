@@ -8,10 +8,11 @@ void printf(char* str)
 
     static uint8_t x=0,y=0;
 
-    if (cleared = true)
+    if (cleared == true)
     {
         x=0;
         y=0;
+        cleared = false;
     }
 
     for(int i = 0; str[i] != '\0'; ++i)
@@ -21,10 +22,12 @@ void printf(char* str)
             case '\n':
                 x = 0;
                 y++;
+                cleared=false;
                 break;
             default:
                 VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0xFF00) | str[i];
                 x++;
+                cleared=false;
                 break;
         }
 
@@ -55,4 +58,9 @@ void clear()
             VideoMemory[80*y+x] = (VideoMemory[80*y+x] & 0xFF00) | ' ';
     
     cleared = true;
+}
+
+int getpid(void) {
+    int pid =1;
+    return pid; // We don't have processes yet...
 }
