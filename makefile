@@ -25,11 +25,17 @@ test.iso: uranium.bin
 	mkdir iso/boot
 	mkdir iso/boot/grub
 	cp uranium.bin iso/boot/uranium.bin
-	echo 'set timeout=0'					  > iso/boot/grub/grub.cfg
+	echo 'set timeout=5'					  > iso/boot/grub/grub.cfg
 	echo 'set default=0'					 >> iso/boot/grub/grub.cfg
 	echo '' 								 >> iso/boot/grub/grub.cfg
-	echo 'menuentry "My Operating System" {' >> iso/boot/grub/grub.cfg
+	echo 'menuentry "Uranium Test ISO" {' >> iso/boot/grub/grub.cfg
 	echo '	multiboot /boot/uranium.bin'	>> iso/boot/grub/grub.cfg
+	echo '	boot'							 >> iso/boot/grub/grub.cfg
+	echo '}'								 >> iso/boot/grub/grub.cfg
+	
+	echo 'menuentry "First HDD {' >> iso/boot/grub/grub.cfg
+	echo '	set root=(hd0)'	>> iso/boot/grub/grub.cfg
+	echo '	chainloader+1'							 >> iso/boot/grub/grub.cfg
 	echo '	boot'							 >> iso/boot/grub/grub.cfg
 	echo '}'								 >> iso/boot/grub/grub.cfg
 	grub-mkrescue --output=test.iso iso
