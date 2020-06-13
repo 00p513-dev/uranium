@@ -5,8 +5,6 @@
 #include "driver.h"
 #include "keyboard.h"
 
-// Test push by TheAwesome98 (you can delete this comment)
-
 void printfHex(uint8_t key)
 {
     char* foo = "00";
